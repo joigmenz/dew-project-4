@@ -1,0 +1,77 @@
+.container {
+    display: flex;
+    flex-flow: column nowrap;
+}
+
+.screen {
+    padding: 7.75em 1.25em;
+}
+
+.keyboard {
+    display: grid;
+    gap: 7px;    
+    grid-template-rows: 48px;
+    grid-template-areas:
+        "tab q w e r t y u i o p";
+}
+
+.key {
+    background-color: gainsboro;
+    cursor: pointer;
+    color: gray;
+}
+
+.item-tab {
+    grid-area: tab;
+    width: 91px;
+}
+
+.item-a {
+    grid-area: q;
+    width: 48px;
+}
+
+.item-w {
+    grid-area: w;
+    width: 48px;
+}
+
+.item-e {
+    grid-area: e;
+    width: 48px;
+}
+
+.item-r {
+    grid-area: r;
+    width: 48px;
+}
+
+.item-t {
+    grid-area: t;
+    width: 48px;
+}
+
+.item-y {
+    grid-area: y;
+    width: 48px;
+}
+
+.item-u {
+    grid-area: u;
+    width: 48px;
+}
+
+.item-i {
+    grid-area: i;
+    width: 48px;
+}
+
+.item-o {
+    grid-area: o;
+    width: 48px;
+}
+
+.item-p {
+    grid-area: p;
+    width: 48px;
+}

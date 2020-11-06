@@ -9,24 +9,44 @@
 
 .keyboard {
     display: grid;
-    gap: 7px;    
-    grid-template-rows: 48px;
+    gap: 7px;
+    grid-template-rows: 48px 48px 48px;
     grid-template-areas:
-        "tab q w e r t y u i o p";
+        "tab q w e r t y u i o p"
+        "caps-lock a s d f g h j k l ñ"
+        "shift greater-less-than z x c v b n m eat dot";
+}
+
+.log {
+    height: 200px;
+}
+
+.key {
+    border-radius: 5px;
+    padding: 1px 8px; 
+    cursor: pointer;
 }
 
 .key {
     background-color: gainsboro;
-    cursor: pointer;
-    color: gray;
+    box-shadow: 0 4px gray;
+    box-shadow: 0 4px gray;
+    display: inline-block;
+    position: relative;
+    border: none;
+}
+
+.key:hover {
+    box-shadow: 0 2px gray;
+    top: 2px;
 }
 
 .item-tab {
     grid-area: tab;
-    width: 91px;
+    width: 88px;
 }
 
-.item-a {
+.item-q {
     grid-area: q;
     width: 48px;
 }
@@ -73,5 +93,125 @@
 
 .item-p {
     grid-area: p;
+    width: 48px;
+}
+
+.caps-lock {
+    grid-area: caps-lock;
+    width: 91px;
+}
+
+.item-a {
+    grid-area: a;
+    justify-self: end;
+    width: 48px;
+}
+
+.item-s {
+    grid-area: s;
+    justify-self: end;
+    width: 48px;
+}
+
+.item-d {
+    grid-area: d;
+    justify-self: end;
+    width: 48px;
+}
+
+.item-f {
+    grid-area: f;
+    justify-self: end;
+    width: 48px;
+}
+
+.item-g {
+    grid-area: g;
+    justify-self: end;
+    width: 48px;
+}
+
+.item-h {
+    grid-area: h;
+    justify-self: end;
+    width: 48px;
+}
+
+.item-j {
+    grid-area: j;
+    justify-self: end;
+    width: 48px;
+}
+
+.item-k {
+    grid-area: k;
+    justify-self: end;
+    width: 48px;
+}
+
+.item-l {
+    grid-area: l;
+    justify-self: end;
+    width: 48px;
+}
+
+.item-ñ {
+    grid-area: ñ;
+    justify-self: end;
+    width: 48px;
+}
+
+.item-shift{
+    grid-area: shift;
+    width: 74px;
+}
+
+.item-greater-less-than {
+    grid-area: greater-less-than;
+    width: 48px;
+}
+
+.item-z {
+    grid-area: z;
+    width: 48px;
+}
+
+.item-x {
+    grid-area: x;
+    width: 48px;
+}
+
+.item-c {
+    grid-area: c;
+    width: 48px;
+}
+
+.item-v {
+    grid-area: v;
+    width: 48px;
+}
+
+.item-b {
+    grid-area: b;
+    width: 48px;
+}
+
+.item-n {
+    grid-area: n;
+    width: 48px;
+}
+
+.item-m {
+    grid-area: m;
+    width: 48px;
+}
+
+.item-eat {
+    grid-area: eat;
+    width: 48px;
+}
+
+.item-dot {
+    grid-area: dot;
     width: 48px;
 }

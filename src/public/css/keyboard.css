@@ -1,0 +1,119 @@
+* {
+    box-sizing: border-box;
+}
+.container {
+    display: flex;
+    flex-flow: column nowrap;
+}
+
+.screen {
+    padding: 7.75em 1.25em;
+}
+
+.keyboard {
+    display: flex;
+    flex-flow: column nowrap;
+    width: 525px;
+}
+
+.row {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: start;
+    position: relative;
+    margin-top: 5px;
+}
+
+.log {
+    height: 200px;
+}
+
+.key {
+    position: relative;
+    font-size: 14px;
+    font-weight: 600;
+    border-radius: 5px;
+    margin: 0 1px;
+    height: 35px;
+    width: 35px;
+    padding: 4px; 
+    cursor: pointer;
+}
+
+/*
+item-top-left-radius: ;
+border-bottom-left-radius: ;
+border-top-right-radius: ;
+border-bottom-right-radius: ;
+*/
+
+.hidden {
+    visibility: hidden;
+}
+
+.key > span {
+    position: absolute;   
+    z-index: 5;
+}
+
+.item-bottom-left-position {
+    top: 14px;
+    left: 4px;
+}
+
+.item-top-left-position {
+    top: 0px;
+    left: 4px;
+}
+
+.upperCase {
+    text-transform: capitalize;
+}
+
+.layer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 10;
+    background-color: transparent;
+}
+
+.key {
+    background-color: gainsboro;
+    box-shadow: 0 4px gray;
+    box-shadow: 0 4px gray;
+    display: inline-block;
+    position: relative;
+    border: none;
+}
+
+.key:hover {
+    box-shadow: 0 2px gray;
+    top: 2px;
+}
+
+.pressed {
+    background-color: rgb(201, 202, 135);
+    box-shadow: 0 2px gray;
+    top: 2px;
+}
+
+.item-backspace {
+    width: 70px;
+}
+
+.item-tab {
+    width: 55px;
+}
+
+.item-enter {
+    position: absolute;
+    right: 0px;
+    height: 75px;
+    width: 50px;
+}
+.shiftright {
+    width: 90px;
+}

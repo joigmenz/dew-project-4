@@ -7,11 +7,13 @@
 }
 
 .screen {
+    align-self: center;
     padding: 3.75em 1.25em;
 }
 
 .keyboard {
     display: flex;
+    align-self: center;
     flex-flow: column nowrap;
     justify-content: center;
     width: 525px;
@@ -20,7 +22,6 @@
 .row {
     display: flex;
     flex-flow: row nowrap;
-    justify-content: start;
     position: relative;
     margin-top: 5px;
 }
@@ -32,7 +33,7 @@
     width: 600px;
     padding: 5px 10px;
     background-color: black;
-    color: green;
+    color: rgb(0, 255, 0);
     border: 10px solid gainsboro;
     border-radius: 15px;
 }
@@ -48,13 +49,6 @@
     padding: 4px; 
     cursor: pointer;
 }
-
-/*
-item-top-left-radius: ;
-border-bottom-left-radius: ;
-border-top-right-radius: ;
-border-bottom-right-radius: ;
-*/
 
 .hidden {
     visibility: hidden;

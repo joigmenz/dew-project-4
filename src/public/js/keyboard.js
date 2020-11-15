@@ -1,11 +1,3 @@
-/*setInterval( function cursor() {
-    if(document.getElementById('cursor').className == 'hidden'){
-        document.getElementById('cursor').classList.remove('hidden')
-    }else{
-        document.getElementById('cursor').classList.add('hidden')
-    }
-}, 500)*/
-
 class Log {
     static screen = document.getElementById('log') 
     static logContent = new Array()
@@ -19,402 +11,397 @@ class Log {
             return Log.screen.innerHTML += content
         });
     }
-}
-
-class Screen {
-    static log = document.getElementById('log')
-    static tagCursor = `<span id="cursor" class="hidden">|</span>`
-    static capsLock = false
-    static shift = false
-    static content = new Array()
-    static string = ""
-    static write(character){
-        if(this.capsLock){
-           character = character.toUpperCase()
-        }
-        Screen.content.push(character)
-        Screen.print()
-    }
-    static print(){
-        let text = ""
-        this.content.forEach(character => {
-            return text+=character
-        })
-        text += this.tagCursor
-        document.getElementById('log').innerHTML = text
-    }
-    static backSpace(){
-        this.content.pop()
-        Screen.print()
-    }
-    static space(){
-        this.write('&nbsp;');
-    }
-    static changeCapsLock(){
-        if(this.capsLock){
-            this.capsLock = false
-        }else{
-            this.capsLock = true
-        }
-    }
-}
-
-class Keyboard {
-    constructor(){
-        this.keyboard = document.getElementById('keyboard')
-        this.keyboard.addEventListener('click', function(event){
-            const obj = KeysCode.checkEvent(event)  
-            if(obj.showScreen){
-                obj.showScreen(obj.key)
-            }    
-            if(obj.functions){
-                obj.functions(obj)
-            } 
-        })
+    static delete(){
+        Log.logContent.pop()
+        Log.print()
     }
 }
 
 class KeysCode {
-    static posCursor = 0;
     static keys = {
         "backquote": {
-            code: "Backquote",
-            key: "º"
+            key: "º",
+            shift: "ª",
+            altGraph: "\\",
+            tag: backquote,            
+            logPrint: true
         },
         "digit0": {
-            code: "Digit0",
-            key: "0"
+            key: "0",
+            shift: "=",            
+            tag: digit0,
+            logPrint: true
         },
         "digit1": {
-            code: "Digit1",
-            key: "1"
+            key: "1",  
+            altGraph: "|",          
+            shift: "!",
+            tag: digit1,
+            logPrint: true
         },
         "digit2": {
-            code: "Digit2",
-            key: "2"
+            key: "2",
+            tag: digit2,
+            altGraph: "@",
+            shift: "\"",
+            logPrint: true
         },
         "digit3": {
-            code: "Digit3",
-            key: "3"
+            key: "3",            
+            altGraph: "#",
+            shift: "·",
+            tag: digit3,
+            logPrint: true
         },
         "digit4": {
-            code: "Digit4",
-            key: "4"
+            key: "4", 
+            altGraph: "~",           
+            shift: "$",
+            tag: digit4,
+            logPrint: true
         },
         "digit5": {
-            code: "Digit5",
-            key: "5"
+            key: "5",
+            shift: "%",
+            tag: digit5,
+            logPrint: true
         },
         "digit6": {
-            code: "Digit6",
-            key: "6"
+            key: "6",
+            altGraph: "¬",             
+            shift: "&",
+            tag: digit6,
+            logPrint: true
         },
         "digit7": {
-            code: "Digit7",
-            key: "7"
+            key: "7",
+            tag: digit7,
+            shift: "/",
+            logPrint: true
         },
         "digit8": {
-            code: "Digit8",
-            key: "8"
+            key: "8",
+            tag: digit8,
+            shift: "(",
+            logPrint: true
         },
         "digit9": {
-            code: "Digit9",
-            key: "9"
+            key: "9",
+            tag: digit9,
+            shift: ")",
+            logPrint: true
         },
         "minus": {
-            code: "Minus",
-            key: "'"
+            key: "'",
+            tag: minus,
+            shift: "?",
+            logPrint: true
         },
         "equal": {
-            code: "Equal",
-            key: "¡"
+            key: "¡",
+            tag: equal,
+            shift: "¿",
+            logPrint: true
+        },
+        "backspace": {
+            key: "",
+            tag: backspace,  
+            action: Log.delete,
+            logPrint: false
         },
         "space": {
-            code: "Space",
-            key: "&nbsp;"
+            key: "&nbsp;",
+            tag: space,
+            logPrint: true
         },
         "keyq": {
-            code: "KeyQ",
             key: "q",
             tag: keyq,
             itsAlphabet: true,
-            showScreen: Log.write,
+            logPrint: true
         },
         "keyw": {
-            code: "KeyW",
             key: "w",
             tag: keyw,
             itsAlphabet: true,
-            showScreen: Log.write,
+            logPrint: true
         },
         "keye": {
-            code: "KeyE",
             key: "e",
-            withQuote: "é",
+            altGraph: "€",       
+            accent: "é",
             tag: keye,
             itsAlphabet: true,
-            showScreen: Log.write,
-            functions: KeysCode.checkPressedCuote
+            logPrint: true
         },
         "keyr": {
-            code: "KeyR",
             key: "r",
             tag: keyr,
             itsAlphabet: true,
-            showScreen: Log.write,
+            logPrint: true
         },
         "keyt": {
-            code: "KeyT",
             key: "t",
             tag: keyt,
             itsAlphabet: true,
-            showScreen: Log.write,
+            logPrint: true
         },
         "keyy": {
-            code: "KeyY",
             key: "y",
             tag: keyy,
             itsAlphabet: true,
-            showScreen: Log.write,
+            logPrint: true
         },
         "keyu": {
-            code: "KeyU",
             key: "u",
-            withQuote: "ú",
+            accent: "ú",
             tag: keyu,
             itsAlphabet: true,
-            showScreen: Log.write,
-            functions: KeysCode.checkPressedCuote
+            logPrint: true
         },
         "keyi": {
-            code: "KeyI",
             key: "i",
-            withQuote: "í",
+            accent: "í",
             tag: keyi,
             itsAlphabet: true,
-            showScreen: Log.write,
-            functions: KeysCode.checkPressedCuote
+            logPrint: true
         },
         "keyo": {
-            code: "KeyO",
             key: "o",
-            withQuote: "ó",
+            accent: "ó",
             tag: keyo,
             itsAlphabet: true,
-            showScreen: Log.write,
-            functions: KeysCode.checkPressedCuote
+            logPrint: true
         },
         "keyp": {
-            code: "KeyP",
             key: "p",
             tag: keyp,
             itsAlphabet: true,
-            showScreen: Log.write,
+            logPrint: true
         },
         "tab": {
-            code: "Tab",
             key: "&nbsp;&nbsp;&nbsp;&nbsp;",
-            showScreen: Log.write,
+            tag: tab,
+            logPrint: true
         },
         "bracketleft": {
             status: false,
-            code: "BracketLeft",
             key: "`",
+            altGraph: "[",    
+            shift: "^",   
             tag: bracketleft,
+            logPrint: true
         },
         "bracketright": {
             status: false,
-            code: "BracketRight",
             key: "+",
+            altGraph: "]",       
+            shift: "*",
             tag: bracketright,
+            logPrint: true
         },
         "enter": {
-            code: "Enter",
             key: "<br/>",
+            tag: enter,
+            logPrint: true
         },    
         "capslock": {
             status: false,
-            code: "capslock",
-            key: "",
-            functions: KeysCode.capslock,
-            tag: capslock
-            
+            tag: capslock,
+            method: KeysCode.pressed,
+            action: KeysCode.capslock     
         }, 
         "keya": {
-            code: "KeyA",
             key: "a",
-            withQuote: "á",
+            accent: "á",
             tag: keya,
             itsAlphabet: true,
-            showScreen: Log.write,
-            functions: KeysCode.checkPressedCuote
+            logPrint: true
         },
         "keys": {
-            code: "KeyS",
             key: "s",
             tag: keys,
             itsAlphabet: true,
-            showScreen: Log.write,
+            logPrint: true
         }, 
         "keyd": {
-            code: "KeyD",
             key: "d",
             tag: keyd,
             itsAlphabet: true,
-            showScreen: Log.write,
+            logPrint: true
         }, 
         "keyf": {
-            code: "KeyF",
             key: "f",
             tag: keyf,
             itsAlphabet: true,
-            showScreen: Log.write,
+            logPrint: true
         },  
         "keyg": {
-            code: "KeyG",
             key: "g",
             tag: keyg,
             itsAlphabet: true,
-            showScreen: Log.write,
+            logPrint: true
         },  
         "keyh": {
-            code: "KeyH",
             key: "h",
             tag: keyh,
             itsAlphabet: true,
-            showScreen: Log.write,
+            logPrint: true
         },  
         "keyj": {
-            code: "KeyJ",
             key: "j",
             tag: keyj,
             itsAlphabet: true,
-            showScreen: Log.write,
+            logPrint: true
         },  
         "keyk": {
-            code: "KeyK",
             key: "k",
             tag: keyk,
             itsAlphabet: true,
-            showScreen: Log.write,
+            logPrint: true
         }, 
         "keyl": {
-            code: "KeyL",
             key: "l",
             tag: keyl,
             itsAlphabet: true,
-            showScreen: Log.write,
+            logPrint: true
         },
         "semicolon": {
-            code: "Semicolon",
             key: "ñ",
-            tag: keyñ,
+            tag: semicolon,
             itsAlphabet: true,
-            showScreen: Log.write,
+            logPrint: true
         },       
         "quote": {
             status: false,
-            code: "Quote",
             key: "´",
+            altGraph: "{",       
+            shift: "¨",
             tag: quote,
-            itsAlphabet: true,
-            showScreen: Log.write,
-            functions: KeysCode.pressedCuote
+            method: KeysCode.pressed,
+            logPrint: false
         }, 
         "backslash": {
             status: false,
-            code: "Backslash",
             key: "ç",
+            altGraph: "}",       
             tag: backslash,
             itsAlphabet: true,
-            showScreen: Log.write,
+            logPrint: true
         }, 
         "intlbackslash": {
-            code: "IntlBackslash",
             key: "<",
+            shift: ">",
             tag: intlbackslash,
-            showScreen: Log.write,
-        },   
+            logPrint: true
+        },  
+        "shiftleft": {
+            status: false,
+            tag: shiftleft,
+            method: KeysCode.pressed,
+            action: KeysCode.capslock
+        }, 
         "keyz": {
-            code: "KeyZ",
             key: "z",
             tag: keyz,
-            showScreen: Log.write,
-        },   
-        "keyz": {
-            code: "KeyZ",
-            key: "z",
-            tag: keyz,
-            itsAlphabet: true,
-            showScreen: Log.write,
-        },    
+            logPrint: true
+        }, 
         "keyx": {
-            code: "KeyX",
             key: "x",
             tag: keyx,
             itsAlphabet: true,
-            showScreen: Log.write,
+            logPrint: true
         },       
         "keyc": {
-            code: "KeyC",
             key: "c",
             tag: keyc,
             itsAlphabet: true,
-            showScreen: Log.write,
+            logPrint: true
         },     
         "keyv": {
-            code: "KeyV",
             key: "v",
             tag: keyv,
             itsAlphabet: true,
-            showScreen: Log.write,
+            logPrint: true
         },  
         "keyb": {
-            code: "KeyB",
             key: "b",
             tag: keyb,
             itsAlphabet: true,
-            showScreen: Log.write,
+            logPrint: true
         }, 
         "keyn": {
-            code: "KeyN",
             key: "n",
             tag: keyn,
             itsAlphabet: true,
-            showScreen: Log.write,
+            logPrint: true
         }, 
         "keym": {
-            code: "KeyM",
             key: "m",
             tag: keym,
             itsAlphabet: true,
-            showScreen: Log.write,
-        },                          
+            logPrint: true
+        },  
+        "comma": {
+            key: ",",
+            shift: ";",
+            tag: comma,
+            logPrint: true
+        },         
+        "period": {
+            key: ".",
+            shift: ":",
+            tag: period,
+            logPrint: true
+        },  
+        "slash": {
+            key: "-",
+            shift: "_",
+            tag: slash,
+            logPrint: true
+        }, 
+        "shiftright": {
+            status: false,
+            tag: shiftright,
+            method: KeysCode.pressed,
+            action: KeysCode.capslock
+        }, 
+        "altgraph": {
+            status: false,
+            key: "",
+            tag: altgraph,
+            method: KeysCode.pressed,
+            logPrint: false
+        }, 
+        
+    }
+    static control = {
+        capslock: KeysCode.keys['capslock'],
+        shiftleft: KeysCode.keys['shiftleft'],
+        shiftright: KeysCode.keys['shiftright'],
+        quote: KeysCode.keys['quote'],
+        altgraph: KeysCode.keys['altgraph']        
     }
     static capslock(obj){
-        if(!obj.status){
-            obj.status = true
-            obj.tag.classList.add('pressed')
+        if(obj.status){
             KeysCode.allUpperCase()
         }else{
-            obj.status = false
-            obj.tag.classList.remove('pressed')
             KeysCode.allLowerCase()
         }
     }
     static allUpperCase(){
-        for(let key in this.keys){
-            if(this.keys[key].itsAlphabet){
-                this.keys[key].key = this.keys[key].key.toUpperCase()
-                this.keys[key].tag.classList.add('upperCase')
+        for(let key in KeysCode.keys){
+            if(KeysCode.keys[key].itsAlphabet){
+                KeysCode.keys[key].key = KeysCode.keys[key].key.toUpperCase()
+                KeysCode.keys[key].tag.classList.add('upperCase')
             }
         }
     }
     static allLowerCase(){
-        for(let key in this.keys){
-            if(this.keys[key].itsAlphabet){
-                this.keys[key].key = this.keys[key].key.toLowerCase()
-                this.keys[key].tag.classList.remove('upperCase')
+        for(let key in KeysCode.keys){
+            if(KeysCode.keys[key].itsAlphabet){
+                KeysCode.keys[key].key = KeysCode.keys[key].key.toLowerCase()
+                KeysCode.keys[key].tag.classList.remove('upperCase')
             }
         }
     }
@@ -427,16 +414,10 @@ class KeysCode {
         return KeysCode.keys[code]
     }
     static pressedCuote(obj){
-        if(!obj.status){
-            obj.status = true
-            obj.tag.classList.add('pressed')
-            delete obj.showScreen
-            KeysCode.allVowelsWithAccent()
+        if(obj.status){
+            obj.status = false            
         }else{
-            obj.status = false
-            obj.tag.classList.remove('pressed')
-            obj.showScreen = Log.write
-            KeysCode.allVowelsOutAccent()
+            obj.status = true
         }
     }
     static checkPressedCuote(){
@@ -444,33 +425,85 @@ class KeysCode {
             KeysCode.pressedCuote(KeysCode.keys['quote'])
         }        
     }
-    static allVowelsWithAccent(){
-        for(let key in this.keys){
-            if(this.keys[key].withQuote){
-                const vowel = this.keys[key].key
-                this.keys[key].key = this.keys[key].withQuote
-                this.keys[key].withQuote = vowel
-            }
+    static pressed(key){
+        key.status = !key.status
+        if(key.status){
+            KeysCode.keyPressed(key)
+        }else{
+            KeysCode.keyUp(key)
         }
     }
-    static allVowelsOutAccent(){
-        for(let key in this.keys){
-            if(this.keys[key].withQuote){
-                const withQuote = this.keys[key].key
-                this.keys[key].key = this.keys[key].withQuote
-                this.keys[key].withQuote = withQuote
+    static keyPressed(key){
+        key.tag.classList.add('pressed')
+    }
+    static keyUp(key){
+        key.tag.classList.remove('pressed')
+    }
+    static run(){
+        const obj = KeysCode.checkEvent(event) 
+        KeysCode.keyPressed(obj) 
+        if(KeysCode.control.altgraph.status){
+            KeysCode.control.altgraph.status = false
+            if(obj.altGraph){
+                Log.write(obj.altGraph)
             }
+            KeysCode.keyUp(obj)
+            KeysCode.keyUp(KeysCode.control.altgraph)
+            return
+        }
+        if(KeysCode.control.shiftleft.status || KeysCode.control.shiftright.status){
+            KeysCode.control.shiftleft.status = false
+            KeysCode.control.shiftright.status = false           
+            if(obj.shift){
+                Log.write(obj.shift)
+            }
+            if(obj.itsAlphabet){
+                Log.write(obj.key)
+            }
+            KeysCode.allLowerCase()
+            KeysCode.keyUp(obj)
+            KeysCode.keyUp(KeysCode.control.shiftleft)
+            KeysCode.keyUp(KeysCode.control.shiftright)
+            return
+        }
+        if(KeysCode.control.quote.status){
+            if(obj.accent){
+                Log.write(obj.accent)
+            }   
+            if(obj === KeysCode.control.quote){
+                Log.write(obj.key)
+            }     
+            KeysCode.control.quote.status = false
+            KeysCode.keyUp(obj)
+            KeysCode.keyUp(KeysCode.control.quote)
+            return
+        }
+        if(obj.method){
+            obj.method(obj)
+        } 
+        if(obj.action){
+            obj.action(obj)
+        }       
+        if(obj.logPrint){
+            Log.write(obj.key)
+            KeysCode.keyUp(obj)
         }
     }
 }
+
+document.getElementById('keyboard').addEventListener('click', function(event){
+    KeysCode.run()
+})
+
 document.addEventListener('keydown', function(event) {
+    event.preventDefault()   
+    KeysCode.run()
+})
+
+document.addEventListener('keyup', function(event) {
     event.preventDefault()
-    console.log(event)
-    const obj = KeysCode.checkEvent(event)   
-    if(obj.functions){
-        obj.functions(obj)
-    }     
-    if(obj.showScreen){
-        obj.showScreen(obj.key)
+    const obj = KeysCode.checkEvent(event) 
+    if(obj.logPrint){
+        KeysCode.keyUp(obj)
     }
 })
